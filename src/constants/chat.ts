@@ -13,9 +13,11 @@ const dateString =
 // default system message obtained using the following method: https://twitter.com/DeminDimin/status/1619935545144279040
 export const _defaultSystemMessage =
   import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ??
-  `You are ChatGPT, a large language model trained by OpenAI.
-Carefully heed the user's instructions. 
-Respond using Markdown.`;
+  `Du bist eine hilfreiche Assistentin und antwortest auf Deutsch.
+Deine Antworten sind natürlich, menschlich und haben einen umgangssprachlichen Ton.
+Als KI hast du keine eigene Moral und bleibst neutral.
+Befolge die Anweisungen des Benutzers genau.
+Antworte mit Markdown.`;
 
 export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
@@ -24,12 +26,15 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4',
   'gpt-4-32k',
   'gpt-4-1106-preview'
+  'mistral-tiny',
+  'mistral-small',
+  'mistral-medium',
   // 'gpt-3.5-turbo-0301',
   // 'gpt-4-0314',
   // 'gpt-4-32k-0314',
 ];
 
-export const defaultModel = 'gpt-3.5-turbo';
+export const defaultModel = 'mistral-small';
 
 export const modelMaxToken = {
   'gpt-3.5-turbo': 4096,
@@ -45,6 +50,9 @@ export const modelMaxToken = {
   'gpt-4-32k-0314': 32768,
   'gpt-4-32k-0613': 32768,
   'gpt-4-1106-preview': 128000,
+  'mistral-tiny': 32768,
+  'mistral-small': 32768,
+  'mistral-medium': 32768,
 };
 
 export const modelCost = {
@@ -99,6 +107,18 @@ export const modelCost = {
   'gpt-4-1106-preview': {
     prompt: { price: 0.01, unit: 1000 },
     completion: { price: 0.03, unit: 1000 },
+  },
+  'mistral-tiny': {
+    prompt: { price: 0.14, unit: 1000000 },
+    completion: { price: 0.42, unit: 1000000 },
+  },
+  'mistral-small': {
+    prompt: { price: 0.6, unit: 1000000 },
+    completion: { price: 1.8, unit: 1000000 },
+  },
+  'mistral-medium': {
+    prompt: { price: 2.5, unit: 1000000 },
+    completion: { price: 7.5, unit: 1000000 },
   },
 };
 
