@@ -116,12 +116,19 @@ export const convertOpenAIToBetterChatGPTFormat = (
   const rootNode = openAIChat.mapping[Object.keys(openAIChat.mapping)[0]].id;
   traverseTree(rootNode);
 
+  // Remove presence_penalty and frequency_penalty from config
+  const { presence_penalty, frequency_penalty, ...config } = _defaultChatConfig;
+
   // Return the chat interface object
   return {
     id: uuidv4(),
     title: openAIChat.title,
     messages,
-    config: _defaultChatConfig,
+    config: {
+      ...config,
+      presence_penalty: null,
+      frequency_penalty: null,
+    },
     titleSet: true,
   };
 };
